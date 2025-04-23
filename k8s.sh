@@ -15,7 +15,7 @@ read  -p "Choose one to Install
 		echo -e "${GREEN} Master is Ready..${NC}"
 
 	elif [ "$name" -eq "2" ] ; then
-		sudo apt-get update; sudo apt-get install -y apt-transport-https ca-certificates curl gpg ; curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.32/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg ; echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.32/deb/ /' | sudo tee /etc/apt/sources.list.d/kubernetes.list ; sudo apt-get update ; sudo apt-get install -y kubelet kubeadm kubectl ; sudo apt-mark hold kubelet kubeadm kubectl ; sudo systemctl enable --now kubelet ; sudo apt install -y containerd ; mkdir /etc/containerd; containerd config default > /etc/containerd/config.toml; sed -i '/^\s*SystemdCgroup/s/\<false\>/true/' /etc/containerd/config.toml
+		sudo apt-get update; sudo apt-get install -y apt-transport-https ca-certificates curl gpg ; curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.32/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg ; echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.32/deb/ /' | sudo tee /etc/apt/sources.list.d/kubernetes.list ; sudo apt-get update ; sudo apt-get install -y kubelet kubeadm kubectl ; sudo apt-mark hold kubelet kubeadm kubectl ; sudo systemctl enable --now kubelet ; sudo apt install -y containerd ; mkdir /etc/containerd; containerd config default > /etc/containerd/config.toml; sed -i '/^\s*SystemdCgroup/s/\<false\>/true/' /etc/containerd/config.toml; echo 1 > /proc/sys/net/ipv4/ip_forward
 
 		echo -e "${GREEN} Worker is Ready..${NC}"
 	else
